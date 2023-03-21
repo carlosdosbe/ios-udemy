@@ -13,6 +13,8 @@ struct HomeView: View {
     @AppStorage("onboarding")  var isOnboardingViewActive: Bool = false
     @State private var isAnimating: Bool = false
     
+    let hapticFeedback = UINotificationFeedbackGenerator()
+    
     // MARK: - BODY
     
     
@@ -56,6 +58,7 @@ struct HomeView: View {
                 withAnimation{
                     isOnboardingViewActive = true
                     playSound(sound: "success", type: "m4a")
+                    hapticFeedback.notificationOccurred(.success)
                 }
             }){
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
